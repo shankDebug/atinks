@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SidebarItems from '../SidebarItems/SidebarItems';
 import { RadioBoxProps } from "../../index";
@@ -16,9 +16,10 @@ const SidebarItem = styled.div<RadioBoxProps>`
   padding: 16px 24px;
   transition: all 0.25s ease-in-out;
   //Change the background color if 'active' prop is received
-  background: ${props => props.isActive ? "#b15b00" : ""};
+  background: ${props => props.isActive ? "#fff2f2" : ""};
   margin: 4px 12px;
   border-radius: 4px;
+  color: ${props => props.isActive ? '#bd2029': ''}
 ​
   p {
     color: white;
@@ -38,7 +39,10 @@ const SidebarItem = styled.div<RadioBoxProps>`
 
 
 const Sidebar =(props:any,{defaultActive}:any)=> {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const handleClick=(route:any)=>{
+    navigate(route)
+  }
 
     const [activeIndex, ] = useState(defaultActive || 1);
         return (
@@ -47,11 +51,11 @@ const Sidebar =(props:any,{defaultActive}:any)=> {
                 {
                     SidebarItems.map((item, index)=> {
                         return (
-                            <a href={item.route}>
+                            <div style={{cursor: 'pointer', color: '#c7c7c7'}} onClick={()=>handleClick(item.route)}>
                                 <SidebarItem key={item.name} isActive={index === activeIndex}>
                                     <p>{item.name}</p>
                                 </SidebarItem>
-                            </a>
+                            </div>
                         );
                     })
                 }
