@@ -10,12 +10,10 @@ const Header = () => {
           <img style={{ height: "10vh" }} src={logo} alt="" />
         </div>
         <div style={{ width: "25vw" }}>
-          <input
-            type="text"
-            placeholder="Search here"
-            // onChange={handleChange}
-            // value={searchInput}
-          />
+          <div className="search">
+            <span className="fa fa-search"></span>
+            <input placeholder="Search term" />
+          </div>
         </div>
         <div style={{ width: "25vw" }}></div>
         <div style={{ width: "25vw" }}></div>
