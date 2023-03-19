@@ -1,8 +1,10 @@
 import React from 'react';
 import logo from '../../assets/images/A.T-inks-logo.png';
+import Editable from './Editable';
 import BasicTab from './Tab/BasicTab';
 
 const AboutUs = () => {
+        const [characterName, setCharacterName] = React.useState("Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum maxime debitis illum porro, officiis odio quisquam dolore similique ea blanditiis.");
 
         return (
             <>
@@ -22,7 +24,8 @@ const AboutUs = () => {
                 <div style={{ margin: '10px 50px'}}> <a href='#'>Verify Company</a></div>
             </div>
             <div style={{margin: '2rem', width: '60rem', color: '#9b9b9b'}}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum maxime debitis illum porro, officiis odio quisquam dolore similique ea blanditiis.
+            <Editable value={characterName} setValue={setCharacterName} />
+            
             </div>
             <BasicTab/>
             </div>
