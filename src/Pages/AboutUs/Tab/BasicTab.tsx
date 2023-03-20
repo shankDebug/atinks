@@ -45,18 +45,44 @@ const BasicTab = () => {
   const [value, setValue] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
   const [head, setHead] = React.useState('');
+  const [contactData, setContact] = React.useState();
+  const [addressData, setAddress] = React.useState();
+  // const [phone, setPhone] = React.useState('');
+
+  let contact = [
+    {
+    "teamName": "Sales Team",
+    "email": "salesteam@br.com/salesteam@b2.com",
+    "phone": "9876543210/8976543210"
+    },
+    {
+      "teamName": "Marketing Team",
+      "email": "salesteam@br.com/salesteam@b2.com",
+      "phone": "9876543210/8976543210"
+      },
+      {
+        "teamName": "Marketing Team",
+        "email": "salesteam@br.com/salesteam@b2.com",
+        "phone": "9876543210/8976543210"
+        }
+   ]
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-  const handleClick = (e?:any) => {
+  const handleClick = (e:any, data?:any) => {
     if(!isOpen){
+      
       setHead(e);
+      setContact(data)
     }
     
     setIsOpen((prevState) => !prevState);
     
   };
+  const handleClose =()=>{
+    setIsOpen((prevState) => !prevState);
+  }
 
   return (
     <>
@@ -84,7 +110,7 @@ const BasicTab = () => {
             }}
           >
             <div>
-              <Cards name="Contact" onClick={()=>handleClick('Contact')} />
+              <Cards name="Contact" data={contact} onClick={()=>handleClick('Contact',contact)} />
             </div>
             <div>
               <Cards name="Address" onClick={()=>handleClick('Address')}/>
@@ -115,12 +141,32 @@ const BasicTab = () => {
       </Box>
       <Drawer
         open={isOpen}
-        onClose={handleClick}
+        onClose={handleClose}
         direction="right"
         className="bla bla bla"
         style={{width: "500px"}}
       >
-        <div style={{ width: "500px" }}>{head}</div>
+        <div style={{ width: "500px" }}>
+          {head}
+          {contactData != '' ? contact?.map((val:any)=>{
+                 return(
+                  <div style={{width: '400px', height: '180px', border: '1px solid #dadada', borderRadius: '5px', margin: '15px', overflow: 'hidden'}}>
+                     <div style={{margin: '15px'}}>
+                         <div style={{ fontWeight : 'bold'}}>
+                             {val.teamName}
+                         </div>
+                         <div>
+                             {val.email}
+                         </div>
+                         <div>
+                             {val.phone}
+                         </div>
+                     </div>
+                     </div>
+                 )
+             })
+             : <div></div>}
+        </div>
       </Drawer>
     </>
   );
