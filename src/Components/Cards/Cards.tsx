@@ -2,7 +2,7 @@ import React from 'react';
 import {FaPen} from 'react-icons/fa';
 
 const Cards =(props:any)=> {
-    console.log(props.data);
+    console.log(props?.data?.length);
     
         return (
             <div style={{width: '400px', height: '180px', border: '1px solid #dadada', borderRadius: '5px', margin: '15px', overflow: 'hidden'}}>
@@ -13,6 +13,7 @@ const Cards =(props:any)=> {
                    </div>
                 </div>
                 <div>
+                    <div style={{width: '25px', height: '25px', backgroundColor: '#fff2f2', marginLeft: '23rem', color: 'red', borderRadius: '1rem'}}>+{props?.data?.length ? props?.data?.length : 0}</div>
                     {props?.data?.map((val:any)=>{
                         return(
                             <div style={{margin: '15px'}}>

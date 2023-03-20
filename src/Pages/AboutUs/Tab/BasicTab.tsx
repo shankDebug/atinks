@@ -45,7 +45,7 @@ const BasicTab = () => {
   const [value, setValue] = React.useState(0);
   const [isOpen, setIsOpen] = React.useState(false);
   const [head, setHead] = React.useState('');
-  const [contactData, setContact] = React.useState();
+  const [contactData, setContact] = React.useState([{}]);
   const [addressData, setAddress] = React.useState();
   // const [phone, setPhone] = React.useState('');
 
@@ -148,7 +148,7 @@ const BasicTab = () => {
       >
         <div style={{ width: "500px" }}>
           {head}
-          {contactData != '' ? contact?.map((val:any)=>{
+          {contactData ? contactData?.map((val:any)=>{
                  return(
                   <div style={{width: '400px', height: '180px', border: '1px solid #dadada', borderRadius: '5px', margin: '15px', overflow: 'hidden'}}>
                      <div style={{margin: '15px'}}>
@@ -165,7 +165,7 @@ const BasicTab = () => {
                      </div>
                  )
              })
-             : <div></div>}
+             : addressData != '' ? <div>Details Of Address</div> : ''}
         </div>
       </Drawer>
     </>
