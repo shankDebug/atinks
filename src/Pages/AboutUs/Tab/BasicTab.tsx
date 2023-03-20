@@ -46,8 +46,8 @@ const BasicTab = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [head, setHead] = React.useState('');
   const [contactData, setContact] = React.useState([{}]);
-  const [addressData, setAddress] = React.useState();
-  // const [phone, setPhone] = React.useState('');
+  const [addressData, setAddress] = React.useState([]);
+  const [operationData, setOperation] = React.useState([]);
 
   let contact = [
     {
@@ -74,7 +74,15 @@ const BasicTab = () => {
     if(!isOpen){
       
       setHead(e);
-      setContact(data)
+      if(e == 'Contact'){
+        setContact(data);
+      }
+      else if(e == 'Address'){
+        setAddress([])
+      }
+      else{
+        setOperation([])
+      }
     }
     
     setIsOpen((prevState) => !prevState);
@@ -82,6 +90,9 @@ const BasicTab = () => {
   };
   const handleClose =()=>{
     setIsOpen((prevState) => !prevState);
+    setContact([]);
+    setAddress([]);
+    setOperation([]);
   }
 
   return (
@@ -165,7 +176,7 @@ const BasicTab = () => {
                      </div>
                  )
              })
-             : addressData != '' ? <div>Details Of Address</div> : ''}
+             : addressData ? <div>Details Of Address</div> : operationData}
         </div>
       </Drawer>
     </>
